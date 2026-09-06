@@ -56,7 +56,7 @@ const FAQ: React.FC = () => {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Frequently Asked <span className="text-blue-600">Questions</span></h2>
                 <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-                    Everything you need to know about the Bharat Lead Summit 2026.
+                    Everything you need to know about the Bharat Lead Summit 2027.
                 </p>
             </div>
 

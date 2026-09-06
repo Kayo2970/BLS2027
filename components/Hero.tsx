@@ -1,31 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Calendar, MapPin, ChevronRight, Play, X, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SHOWREEL_EMBED_URL, LOGO_URL } from '../constants';
-
-const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
-  <div className="flex flex-col items-center bg-white/80 backdrop-blur-md border border-slate-100 shadow-xl shadow-blue-500/5 p-2 rounded-xl w-14 xs:w-16 sm:w-20 md:w-24 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
-    <div className="absolute top-0 right-0 w-8 h-8 bg-blue-100 rounded-full -mr-4 -mt-4 blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
-    
-    <div className="relative h-6 sm:h-8 w-full overflow-hidden flex justify-center items-center mb-1">
-      <AnimatePresence mode="popLayout">
-        <motion.span
-          key={value}
-          initial={{ y: "50%", opacity: 0, scale: 0.5 }}
-          animate={{ y: "0%", opacity: 1, scale: 1 }}
-          exit={{ y: "-50%", opacity: 0, scale: 0.5 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="absolute text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tabular-nums"
-        >
-          {value < 10 ? `0${value}` : value}
-        </motion.span>
-      </AnimatePresence>
-    </div>
-    <span className="text-[7px] xs:text-[8px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">{label}</span>
-  </div>
-);
 
 const AshokaCharaBackground = () => (
   <motion.div
@@ -131,7 +109,7 @@ const VideoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                         width="100%" 
                         height="100%" 
                         src={SHOWREEL_EMBED_URL}
-                        title="Bharat Lead Summit 2026 Showreel" 
+                        title="Bharat Lead Summit 2027 Showreel"
                         frameBorder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowFullScreen
@@ -143,8 +121,6 @@ const VideoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 };
 
 const Hero: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [isEventStarted, setIsEventStarted] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -153,37 +129,14 @@ const Hero: React.FC = () => {
     const handleScroll = () => {
         setScrolled(window.scrollY > 50);
     };
-    
+
     // Check initial position
     handleScroll();
-    
+
     window.addEventListener('scroll', handleScroll);
-    
-    // Countdown Timer
-    const targetDate = new Date('2026-04-10T09:00:00+05:30').getTime();
-    const calculate = () => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-        setIsEventStarted(false);
-      } else {
-        setIsEventStarted(true);
-      }
-    };
-
-    calculate();
-    const interval = setInterval(calculate, 1000);
 
     return () => {
         window.removeEventListener('scroll', handleScroll);
-        clearInterval(interval);
     };
   }, []);
 
@@ -290,7 +243,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.15 }}
                 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 mb-4 leading-[1.02]"
             >
-                BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2026
+                BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2027
             </motion.h1>
 
             {/* 4. SUBTITLE (Max 20 words) */}
@@ -303,25 +256,16 @@ const Hero: React.FC = () => {
                 Empowering the next generation of visionary leaders for sustainable growth and <span className="text-slate-900 font-semibold">Viksit Bharat 2047</span>.
             </motion.p>
             
-            {/* 5. COUNTDOWN */}
+            {/* 5. DATE STATUS */}
             <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.35 }}
                 className="flex flex-wrap justify-center gap-2.5 xs:gap-3 sm:gap-4 mb-8"
             >
-                {!isEventStarted ? (
-                    <>
-                        <CountdownUnit value={timeLeft.days} label="Days" />
-                        <CountdownUnit value={timeLeft.hours} label="Hours" />
-                        <CountdownUnit value={timeLeft.minutes} label="Mins" />
-                        <CountdownUnit value={timeLeft.seconds} label="Secs" />
-                    </>
-                ) : (
-                    <div className="px-6 py-3 bg-red-50 text-red-600 rounded-2xl font-bold text-lg border border-red-100 animate-pulse">
-                        Summit Underway!
-                    </div>
-                )}
+                <div className="px-6 py-3 bg-blue-50 text-blue-700 rounded-2xl font-bold text-lg border border-blue-100">
+                    Dates To Be Announced
+                </div>
             </motion.div>
 
             {/* 6. DATE & VENUE PILLS */}
@@ -337,7 +281,7 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="text-left">
                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Date</p>
-                        <p className="text-slate-800 font-bold text-xs">April 10 - 11, 2026</p>
+                        <p className="text-slate-800 font-bold text-xs">TBD</p>
                     </div>
                 </div>
 

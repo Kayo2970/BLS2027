@@ -116,7 +116,7 @@ const Gallery: React.FC = () => {
               <Camera size={20} className="text-blue-400" />
               <span className="text-white font-bold tracking-wide">Captured Moments</span>
               <div className="w-px h-4 bg-white/20 mx-2" />
-              <span className="text-slate-400 text-xs uppercase tracking-widest font-mono">2023-2026</span>
+              <span className="text-slate-400 text-xs uppercase tracking-widest font-mono">2023-2027</span>
           </div>
       </div>
     </div>

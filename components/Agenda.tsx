@@ -58,7 +58,7 @@ const Agenda: React.FC = () => {
                                     activeDay === day ? 'text-blue-600' : 'text-slate-500 hover:text-slate-800'
                                 }`}
                             >
-                                {day === 'day1' ? 'Day 01 - April 10' : 'Day 02 - April 11'}
+                                {day === 'day1' ? 'Day 01' : 'Day 02'}
                                 {activeDay === day && (
                                     <motion.div 
                                         layoutId="activeDayTab"
