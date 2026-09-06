@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bls2027",
   "compatibility_date": "2024-09-23",
+  "workers_dev": true,
   "build": {
     "command": "npm run build"
   },
