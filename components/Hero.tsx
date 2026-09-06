@@ -194,7 +194,7 @@ const Hero: React.FC = () => {
              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Organized By</span>
              <div className="bg-white/80 backdrop-blur-xl w-32 h-32 lg:w-48 lg:h-48 p-4 rounded-[2rem] border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_15px_35px_rgb(0,0,0,0.12)] transition-all duration-500 group transform hover:scale-105 flex items-center justify-center text-center">
                  <div className="absolute inset-2 border border-dashed border-slate-200 rounded-[1.5rem] pointer-events-none" />
-                 <img src="/images/partners/leads-logo.png" alt="LEADS Next Gen Centre" className="w-full h-full object-contain relative z-10 p-4" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
+                 <img src="/images/partners/leads-logo.webp" alt="LEADS Next Gen Centre" className="w-full h-full object-contain relative z-10 p-4" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
                  <span className="font-bold text-slate-700 text-sm relative z-10 hidden">LEADS Next Gen Centre</span>
                  <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-blue-500 rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                  <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-blue-500 rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -345,11 +345,11 @@ const Hero: React.FC = () => {
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Co-Hosted By</span>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <div className="w-64 h-24 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center hover:shadow-md hover:border-blue-200 transition-all group cursor-default">
-                            <img src="/images/partners/ruas-fmc.png" alt="RUAS Faculty of Management & Commerce" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
+                            <img src="/images/partners/ruas-fmc.webp" alt="RUAS Faculty of Management & Commerce" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
                             <span className="font-bold text-slate-700 text-sm text-center max-w-[200px] group-hover:text-blue-600 transition-colors hidden">RUAS Faculty of Management & Commerce</span>
                         </div>
                         <div className="w-64 h-24 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center hover:shadow-md hover:border-blue-200 transition-all group cursor-default">
-                            <img src="/images/partners/rtbi.png" alt="RTBI" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
+                            <img src="/images/partners/rtbi.webp" alt="RTBI" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
                             <span className="font-bold text-slate-700 text-sm text-center group-hover:text-blue-600 transition-colors hidden">RTBI</span>
                         </div>
                     </div>
@@ -365,15 +365,15 @@ const Hero: React.FC = () => {
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">In Association With</span>
                     <div className="flex flex-col sm:flex-row gap-4">
                         <div className="w-64 h-24 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center hover:shadow-md hover:border-blue-200 transition-all group cursor-default">
-                            <img src="/images/partners/startup-karnataka.png" alt="Startup Karnataka" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
+                            <img src="/images/partners/startup-karnataka.webp" alt="Startup Karnataka" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
                             <span className="font-bold text-slate-700 text-sm text-center group-hover:text-blue-600 transition-colors hidden">Startup Karnataka</span>
                         </div>
                         <div className="w-64 h-24 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center hover:shadow-md hover:border-blue-200 transition-all group cursor-default">
-                            <img src="/images/partners/govt-karnataka.png" alt="Government of Karnataka" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
+                            <img src="/images/partners/govt-karnataka.webp" alt="Government of Karnataka" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
                             <span className="font-bold text-slate-700 text-sm text-center group-hover:text-blue-600 transition-colors hidden">Government of Karnataka</span>
                         </div>
                         <div className="w-64 h-24 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center hover:shadow-md hover:border-blue-200 transition-all group cursor-default">
-                            <img src="/images/partners/k-tech.png" alt="K-tech" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
+                            <img src="/images/partners/k-tech.webp" alt="K-tech" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling!.classList.remove('hidden'); }} />
                             <span className="font-bold text-slate-700 text-sm text-center group-hover:text-blue-600 transition-colors hidden">K-tech</span>
                         </div>
                     </div>
