@@ -4,29 +4,31 @@ import { motion } from 'framer-motion';
 
 const Stats: React.FC = () => {
   return (
-    <div className="w-full bg-white relative z-20 py-10">
+    <section className="w-full bg-slate-950 text-white relative z-20 py-12 border-y border-slate-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {STATS.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl bg-white border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] text-center group hover:border-blue-200 hover:shadow-xl transition-all"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+              whileHover={{ y: -3 }}
+              className="p-6 rounded-2xl glass-card-dark text-center group relative overflow-hidden"
             >
-              <h3 className="text-4xl font-bold mb-2 text-slate-900 group-hover:text-blue-600 transition-colors">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-blue-500/10 rounded-full blur-xl group-hover:bg-blue-500/20 transition-all pointer-events-none"></div>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-1.5 text-white tracking-tight group-hover:text-cyan-400 transition-colors">
                 {stat.value}
               </h3>
-              <p className="text-sm text-slate-500 font-semibold uppercase tracking-wide">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
                 {stat.label}
               </p>
             </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

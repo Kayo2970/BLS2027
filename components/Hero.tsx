@@ -204,65 +204,63 @@ const Hero: React.FC = () => {
 
 
         {/* Centered Content Wrapper */}
-        <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             
-            {/* 1. RUAS PILL */}
+            {/* 1. EYEBROW BADGE */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-slate-100 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] mb-4"
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/80 shadow-sm mb-4"
             >
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                <span className="text-slate-600 text-[10px] sm:text-xs font-bold tracking-widest uppercase">LEADS NEXT GEN CENTRE | RUAS</span>
+                <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></div>
+                <span className="text-slate-700 text-[11px] font-extrabold tracking-wider uppercase">LEADS NEXT GEN CENTRE · RUAS BANGALORE</span>
             </motion.div>
 
-            {/* 2. INNOVATION CHALLENGE PILL */}
+            {/* 2. INNOVATION CHALLENGE ANNOUNCEMENT */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-                className="mb-6 sm:mb-8"
+                transition={{ delay: 0.1, duration: 0.4 }}
+                className="mb-6"
             >
-                <Link to="/events" className="cursor-pointer group">
-                    <div className="relative inline-flex items-center gap-2 px-4 py-2 sm:px-5 rounded-full border border-emerald-200/60 shadow-lg shadow-emerald-500/10 bg-[linear-gradient(110deg,#ecfdf5,45%,#ffffff,55%,#ecfdf5)] bg-[length:200%_100%] animate-shimmer overflow-hidden transition-transform group-hover:scale-105">
+                <Link to="/register" className="cursor-pointer group">
+                    <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-300/80 shadow-sm bg-emerald-50/80 hover:bg-emerald-100/80 transition-all btn-tactile">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
                         </span>
-                        <span className="text-[10px] sm:text-xs font-black text-emerald-800 tracking-widest uppercase">Registrations Open for Bharat Innovation Challenge</span>
+                        <span className="text-xs font-bold text-emerald-900 tracking-wide">Registrations Open · Bharat Innovation Challenge</span>
                     </div>
                 </Link>
             </motion.div>
 
-            {/* 3. MAIN TITLE */}
+            {/* 3. MAIN TITLE (Max 2 lines on desktop) */}
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] font-black tracking-tight text-slate-900 mb-4 sm:mb-6 leading-[1.1] sm:leading-[0.95]"
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 mb-4 leading-[1.02]"
             >
-                BHARAT <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">LEAD</span><br/>
-                SUMMIT 2026
+                BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2026
             </motion.h1>
 
-            {/* 4. SUBTITLE */}
+            {/* 4. SUBTITLE (Max 20 words) */}
             <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 sm:mb-10 font-light leading-relaxed max-w-2xl mx-auto px-2"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 font-normal leading-relaxed max-w-xl mx-auto"
             >
-                The Stage for <span className="font-semibold text-slate-900">Sustainable Leadership and Entrepreneurship</span>:<br />
-                Transforming Vision towards <span className="text-orange-500 font-bold decoration-orange-200 underline decoration-4 underline-offset-4">Viksit Bharat 2047</span>.
+                Empowering the next generation of visionary leaders for sustainable growth and <span className="text-slate-900 font-semibold">Viksit Bharat 2047</span>.
             </motion.p>
             
             {/* 5. COUNTDOWN */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap justify-center gap-2 xs:gap-3 sm:gap-4 mb-8 sm:mb-10"
+                transition={{ duration: 0.6, delay: 0.35 }}
+                className="flex flex-wrap justify-center gap-2.5 xs:gap-3 sm:gap-4 mb-8"
             >
                 {!isEventStarted ? (
                     <>
@@ -272,64 +270,64 @@ const Hero: React.FC = () => {
                         <CountdownUnit value={timeLeft.seconds} label="Secs" />
                     </>
                 ) : (
-                    <div className="px-8 py-4 bg-red-50 text-red-600 rounded-2xl font-bold text-xl border border-red-100 animate-pulse">
-                        Event has ended!
+                    <div className="px-6 py-3 bg-red-50 text-red-600 rounded-2xl font-bold text-lg border border-red-100 animate-pulse">
+                        Summit Underway!
                     </div>
                 )}
             </motion.div>
 
-            {/* 6. DATE & VENUE */}
+            {/* 6. DATE & VENUE PILLS */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="flex flex-wrap justify-center gap-4 mb-12"
+                transition={{ duration: 0.6, delay: 0.45 }}
+                className="flex flex-wrap justify-center gap-3 mb-10"
             >
-                <div className="flex items-center gap-3 px-5 py-3 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-blue-200 transition-colors">
-                    <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
-                        <Calendar size={18} />
+                <div className="flex items-center gap-2.5 px-4 py-2 bg-white/90 rounded-xl shadow-xs border border-slate-200/80">
+                    <div className="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+                        <Calendar size={15} />
                     </div>
                     <div className="text-left">
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Event Date</p>
-                        <p className="text-slate-800 font-bold text-sm">10-11 April, 2026</p>
+                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Date</p>
+                        <p className="text-slate-800 font-bold text-xs">April 10 - 11, 2026</p>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-3 px-5 py-3 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-orange-200 transition-colors">
-                    <div className="p-2 bg-orange-50 rounded-lg text-orange-600">
-                        <MapPin size={18} />
+                <div className="flex items-center gap-2.5 px-4 py-2 bg-white/90 rounded-xl shadow-xs border border-slate-200/80">
+                    <div className="p-1.5 bg-orange-50 text-orange-600 rounded-lg">
+                        <MapPin size={15} />
                     </div>
                     <div className="text-left">
-                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Venue</p>
-                        <p className="text-slate-800 font-bold text-sm">Ramaiah University of Applied Sciences</p>
+                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Venue</p>
+                        <p className="text-slate-800 font-bold text-xs">Ramaiah University, Bengaluru</p>
                     </div>
                 </div>
             </motion.div>
 
             {/* 7. ACTION BUTTONS */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
+                transition={{ duration: 0.6, delay: 0.55 }}
+                className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md"
             >
-                <Link to="/register" className="w-full sm:w-auto">
-                    <button className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-base shadow-xl hover:shadow-2xl hover:bg-blue-500 hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-                        <UserPlus size={18} /> Delegate Registration
+                <Link to="/register" className="w-full sm:w-auto flex-1">
+                    <button className="w-full px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-sm shadow-lg shadow-blue-600/25 transition-all btn-tactile flex items-center justify-center gap-2">
+                        <UserPlus size={16} /> Register Delegate
                     </button>
                 </Link>
 
-                <Link to="/sponsorship" className="w-full sm:w-auto">
-                    <button className="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white rounded-full font-bold text-base shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-                        View Sponsorship Plans <ChevronRight size={18} />
+                <Link to="/sponsorship" className="w-full sm:w-auto flex-1">
+                    <button className="w-full px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-bold text-sm shadow-md transition-all btn-tactile flex items-center justify-center gap-2">
+                        Sponsorship Plans <ChevronRight size={16} />
                     </button>
                 </Link>
                 
                 <button 
                     onClick={() => setShowVideo(true)}
-                    className="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 rounded-full font-bold text-base border border-slate-200 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2 group"
+                    className="w-full sm:w-auto px-5 py-3.5 bg-white text-slate-800 rounded-full font-bold text-sm border border-slate-200/80 shadow-xs hover:bg-slate-50 transition-all btn-tactile flex items-center justify-center gap-2 group"
                 >
-                    <Play size={16} className="fill-current text-slate-900 group-hover:text-blue-600 transition-colors" /> Watch Showreel
+                    <Play size={15} className="fill-current text-slate-700 group-hover:text-blue-600 transition-colors" /> Watch Video
                 </button>
             </motion.div>
 
