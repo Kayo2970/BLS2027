@@ -99,7 +99,7 @@ const About: React.FC = () => {
                                         <h3 className="text-xl font-bold text-slate-800">About Bharat Lead Summit</h3>
                                     </div>
                                     <p className="text-slate-600 text-lg leading-relaxed">
-                                        The BharatLead Summit 2027 by the LEADS Next-Gen Centre at RUAS is a strategic platform that prepares emerging executives for a resource-conscious global economy.
+                                        The BharatLead Summit 2026 by the LEADS Next-Gen Centre at RUAS is a strategic platform that prepares emerging executives for a resource-conscious global economy.
                                     </p>
                                     <p className="text-slate-600 text-lg leading-relaxed">
                                         Bringing together industry leaders, policymakers, academics, and student innovators, the Summit focuses on practical strategies for building sustainable and scalable businesses. Through roundtables, real-world innovation challenges, and industry keynotes, participants learn to turn market pressures into opportunities and design responsible, future-ready enterprises.

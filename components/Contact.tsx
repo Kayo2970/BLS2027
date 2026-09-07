@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
                         </div>
                         <div>
                             <h2 className="text-3xl font-black tracking-tight leading-none">BHARAT<span className="text-blue-500">LEAD</span></h2>
-                            <span className="text-[10px] text-slate-400 tracking-[0.3em] uppercase block">Summit 2027</span>
+                            <span className="text-[10px] text-slate-400 tracking-[0.3em] uppercase block">Summit 2026</span>
                         </div>
                     </div>
                     <p className="text-slate-400 mb-8 max-w-md text-sm leading-relaxed">

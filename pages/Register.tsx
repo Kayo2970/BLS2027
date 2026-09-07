@@ -7,7 +7,7 @@ const Register: React.FC = () => {
     <>
       <PageHeader 
         title="Delegate" 
-        subtitle="Secure your place at the premier leadership summit of 2027."
+        subtitle="Secure your place at the premier leadership summit of 2026."
         highlight="Registration"
       />
       <RegisterContent />

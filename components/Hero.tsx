@@ -1,53 +1,30 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, MapPin, ChevronRight, Play, X, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SHOWREEL_EMBED_URL, LOGO_URL } from '../constants';
 
-const AshokaCharaBackground = () => (
-  <motion.div
-    className="absolute -right-10 bottom-0 sm:right-0 sm:-bottom-4 md:right-6 lg:right-16 w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[460px] md:h-[460px] z-0 pointer-events-none opacity-[0.09] md:opacity-[0.12]"
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1, delay: 0.2 }}
-    aria-hidden="true"
-  >
-    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Ashoka Chakra behind the figure */}
-      <g stroke="#1e3a8a" strokeWidth="2">
-        <circle cx="200" cy="200" r="150" strokeOpacity="0.5" />
-        {Array.from({ length: 24 }).map((_, i) => {
-          const angle = (i * 360) / 24;
-          const rad = (angle * Math.PI) / 180;
-          const x2 = 200 + 150 * Math.cos(rad);
-          const y2 = 200 + 150 * Math.sin(rad);
-          return <line key={i} x1="200" y1="200" x2={x2} y2={y2} strokeOpacity="0.35" />;
-        })}
-        <circle cx="200" cy="200" r="14" fill="#1e3a8a" fillOpacity="0.5" />
-      </g>
-
-      {/* Emperor Ashoka character silhouette - crowned figure with hand raised in blessing */}
-      <g fill="#0f172a">
-        {/* Robe / body */}
-        <path d="M200 158c-11 0-21 5-27 14-14 20-24 46-24 78 0 26 6 46 10 58a12 12 0 0 0 11 8h60a12 12 0 0 0 11-8c4-12 10-32 10-58 0-32-10-58-24-78-6-9-16-14-27-14z" />
-        {/* Sash detail (saffron/green accent using currentColor via opacity) */}
-        <path d="M175 200l14 96M225 200l-14 96" stroke="#f97316" strokeWidth="4" strokeOpacity="0.6" fill="none" strokeLinecap="round" />
-        {/* Neck */}
-        <rect x="188" y="132" width="24" height="20" rx="6" />
-        {/* Head */}
-        <circle cx="200" cy="112" r="26" />
-        {/* Crown (three-peaked, referencing the Lion Capital) */}
-        <path d="M170 96l10-24 10 16 10-22 10 22 10-16 10 24c-6 6-40 6-60 0z" />
-        <circle cx="200" cy="66" r="4" fill="#f97316" />
-        {/* Raised arm in blessing gesture */}
-        <path d="M226 150c10-6 22-6 30 2 9 8 12 20 10 30-2 3-8 4-11 1-4-8-9-15-16-19-8-4-14-8-13-14z" />
-        <circle cx="262" cy="184" r="8" />
-        {/* Other arm resting */}
-        <path d="M176 152c-10 0-20 6-24 16-4 10-4 22 0 30 2 3 8 3 10-1 1-9 3-18 8-25 5-7 10-13 6-20z" />
-      </g>
-    </svg>
-  </motion.div>
+const CountdownUnit = ({ value, label }: { value: number; label: string }) => (
+  <div className="flex flex-col items-center bg-white/80 backdrop-blur-md border border-slate-100 shadow-xl shadow-blue-500/5 p-2 rounded-xl w-14 xs:w-16 sm:w-20 md:w-24 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+    <div className="absolute top-0 right-0 w-8 h-8 bg-blue-100 rounded-full -mr-4 -mt-4 blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+    
+    <div className="relative h-6 sm:h-8 w-full overflow-hidden flex justify-center items-center mb-1">
+      <AnimatePresence mode="popLayout">
+        <motion.span
+          key={value}
+          initial={{ y: "50%", opacity: 0, scale: 0.5 }}
+          animate={{ y: "0%", opacity: 1, scale: 1 }}
+          exit={{ y: "-50%", opacity: 0, scale: 0.5 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="absolute text-lg xs:text-xl sm:text-2xl md:text-3xl font-black text-slate-900 tabular-nums"
+        >
+          {value < 10 ? `0${value}` : value}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+    <span className="text-[7px] xs:text-[8px] sm:text-[10px] font-bold text-slate-500 uppercase tracking-widest">{label}</span>
+  </div>
 );
 
 const TirangaBackground = () => (
@@ -109,7 +86,7 @@ const VideoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
                         width="100%" 
                         height="100%" 
                         src={SHOWREEL_EMBED_URL}
-                        title="Bharat Lead Summit 2027 Showreel"
+                        title="Bharat Lead Summit 2026 Showreel" 
                         frameBorder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowFullScreen
@@ -121,6 +98,8 @@ const VideoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 };
 
 const Hero: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isEventStarted, setIsEventStarted] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -129,14 +108,37 @@ const Hero: React.FC = () => {
     const handleScroll = () => {
         setScrolled(window.scrollY > 50);
     };
-
+    
     // Check initial position
     handleScroll();
-
+    
     window.addEventListener('scroll', handleScroll);
+    
+    // Countdown Timer
+    const targetDate = new Date('2026-04-10T09:00:00+05:30').getTime();
+    const calculate = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+        setIsEventStarted(false);
+      } else {
+        setIsEventStarted(true);
+      }
+    };
+
+    calculate();
+    const interval = setInterval(calculate, 1000);
 
     return () => {
         window.removeEventListener('scroll', handleScroll);
+        clearInterval(interval);
     };
   }, []);
 
@@ -152,9 +154,6 @@ const Hero: React.FC = () => {
         
         {/* Animated Blobs - Replaced with Tiranga Background */}
         <TirangaBackground />
-
-        {/* Ashoka Character Watermark */}
-        <AshokaCharaBackground />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -243,7 +242,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.15 }}
                 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 mb-4 leading-[1.02]"
             >
-                BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2027
+                BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2026
             </motion.h1>
 
             {/* 4. SUBTITLE (Max 20 words) */}
@@ -256,16 +255,25 @@ const Hero: React.FC = () => {
                 Empowering the next generation of visionary leaders for sustainable growth and <span className="text-slate-900 font-semibold">Viksit Bharat 2047</span>.
             </motion.p>
             
-            {/* 5. DATE STATUS */}
+            {/* 5. COUNTDOWN */}
             <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.35 }}
                 className="flex flex-wrap justify-center gap-2.5 xs:gap-3 sm:gap-4 mb-8"
             >
-                <div className="px-6 py-3 bg-blue-50 text-blue-700 rounded-2xl font-bold text-lg border border-blue-100">
-                    Dates To Be Announced
-                </div>
+                {!isEventStarted ? (
+                    <>
+                        <CountdownUnit value={timeLeft.days} label="Days" />
+                        <CountdownUnit value={timeLeft.hours} label="Hours" />
+                        <CountdownUnit value={timeLeft.minutes} label="Mins" />
+                        <CountdownUnit value={timeLeft.seconds} label="Secs" />
+                    </>
+                ) : (
+                    <div className="px-6 py-3 bg-red-50 text-red-600 rounded-2xl font-bold text-lg border border-red-100 animate-pulse">
+                        Summit Underway!
+                    </div>
+                )}
             </motion.div>
 
             {/* 6. DATE & VENUE PILLS */}
@@ -281,7 +289,7 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="text-left">
                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Date</p>
-                        <p className="text-slate-800 font-bold text-xs">TBD</p>
+                        <p className="text-slate-800 font-bold text-xs">April 10 - 11, 2026</p>
                     </div>
                 </div>
 

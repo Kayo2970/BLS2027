@@ -30,7 +30,7 @@ export const SOCIAL_LINKS = {
 
 export const FAQ_DATA = [
   {
-    question: "Who can attend the Bharat Lead Summit 2027?",
+    question: "Who can attend the Bharat Lead Summit 2026?",
     answer: "The summit is open to university students, industry delegates, academic experts, and young entrepreneurs interested in sustainable leadership and Indian industry growth."
   },
   {
@@ -82,8 +82,8 @@ export const NAV_LINKS = [
         href: '/summit#agenda', 
         icon: CalendarCheck,
         subLinks: [
-          { name: 'Day 01', href: '/summit#agenda-day1' },
-          { name: 'Day 02', href: '/summit#agenda-day2' }
+          { name: 'Day 01 (April 10)', href: '/summit#agenda-day1' },
+          { name: 'Day 02 (April 11)', href: '/summit#agenda-day2' }
         ]
       },
       { name: 'Highlights', href: '/summit#highlights', icon: Sparkles },

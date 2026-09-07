@@ -20,7 +20,7 @@ const HomeAboutTeaser: React.FC = () => {
                         Shaping the Future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Indian Leadership</span>
                     </h2>
                     <p className="text-slate-600 text-lg leading-relaxed mb-8">
-                        The BharatLead Summit 2027 is a strategic platform where experience meets ambition. Hosted by the LEADS Next-Gen Centre at RUAS, we are uniting changemakers to reshape a future where business success and planetary stewardship are inseparable.
+                        The BharatLead Summit 2026 is a strategic platform where experience meets ambition. Hosted by the LEADS Next-Gen Centre at RUAS, we are uniting changemakers to reshape a future where business success and planetary stewardship are inseparable.
                     </p>
                     <Link to="/about" className="group inline-flex items-center gap-2 text-slate-900 font-bold border-b-2 border-slate-900 hover:text-blue-600 hover:border-blue-600 transition-colors pb-1">
                         Read Our Full Vision <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
