@@ -13,6 +13,7 @@ import Summit from './pages/Summit';
 import Sponsorship from './pages/Sponsorship';
 import ContactPage from './pages/ContactPage';
 import Register from './pages/Register';
+import PastInitiatives from './pages/PastInitiatives';
 import DesignPro from './pages/DesignPro';
 
 interface LayoutProps {
@@ -65,6 +66,7 @@ function App() {
                 <Route path="/sponsorship" element={<Sponsorship />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/past-initiatives" element={<PastInitiatives />} />
                 <Route path="/designpro" element={<DesignPro />} />
             </Routes>
         </Layout>
