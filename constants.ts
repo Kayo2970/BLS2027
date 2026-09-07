@@ -107,13 +107,18 @@ export const NAV_LINKS = [
       { name: 'Current Partners', href: '/sponsorship#partners', icon: Handshake },
     ]
   },
-  { 
-    name: 'Contact', 
+  {
+    name: 'Contact',
     href: '/contact',
     subLinks: [
       { name: 'Get in Touch', href: '/contact', icon: Mail },
       { name: 'Our Location', href: '/contact#location', icon: MapPin },
     ]
+  },
+  {
+    name: 'Past Initiatives',
+    href: '/past-initiatives',
+    subLinks: []
   },
 ];
 
