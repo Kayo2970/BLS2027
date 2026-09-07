@@ -8,8 +8,8 @@ import { SHOWREEL_EMBED_URL, LOGO_URL } from '../constants';
 const AshokaCharaBackground = () => (
   <motion.div
     className="absolute -right-10 bottom-0 sm:right-0 sm:-bottom-4 md:right-6 lg:right-16 w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[460px] md:h-[460px] z-0 pointer-events-none opacity-[0.09] md:opacity-[0.12]"
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
+    initial={{ y: 30 }}
+    animate={{ y: 0 }}
     transition={{ duration: 1, delay: 0.2 }}
     aria-hidden="true"
   >
