@@ -21,7 +21,7 @@ interface LayoutProps {
 
 // Routes that render their own full-screen chrome (nav/footer) and should
 // skip the shared site Navbar/Contact footer.
-const CHROMELESS_ROUTES = ['/designpro'];
+const CHROMELESS_ROUTES = ['/', '/designpro'];
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
