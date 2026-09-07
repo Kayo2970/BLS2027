@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { PARTNERS } from '../constants';
+import BorderGlow from './BorderGlow';
 
 interface PartnersProps {
     showCollaborators?: boolean;
@@ -26,22 +27,24 @@ const Partners: React.FC<PartnersProps> = ({ showCollaborators = true, className
             <div className="flex gap-4 md:gap-8 items-center flex-wrap justify-center md:justify-end">
                 {/* Collaborators */}
                 {PARTNERS.collaborators.map((c, i) => (
-                    <div key={i} className="group relative h-20 md:h-24 w-40 md:w-48 bg-white border border-slate-200 rounded-xl flex items-center justify-center p-1 shadow-sm hover:shadow-md hover:border-blue-200 transition-all cursor-pointer overflow-hidden">
-                        <img 
-                          src={c.logo} 
-                          alt={c.name} 
-                          className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-90 group-hover:opacity-100 p-1" 
-                          onError={(e) => {
-                            // Fallback if image missing
-                            const parent = e.currentTarget.parentElement;
-                            if (parent) {
-                                e.currentTarget.style.display = 'none';
-                                parent.innerText = c.name;
-                                parent.className += ' text-[10px] text-center font-bold text-slate-600 leading-tight p-2';
-                            }
-                          }}
-                        />
-                    </div>
+                    <BorderGlow key={i} borderRadius={12} backgroundColor="#ffffff" glowColor="217 91% 60%" className="h-20 md:h-24 w-40 md:w-48">
+                        <div className="group relative w-full h-full flex items-center justify-center p-1 cursor-pointer overflow-hidden">
+                            <img
+                              src={c.logo}
+                              alt={c.name}
+                              className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-90 group-hover:opacity-100 p-1"
+                              onError={(e) => {
+                                // Fallback if image missing
+                                const parent = e.currentTarget.parentElement;
+                                if (parent) {
+                                    e.currentTarget.style.display = 'none';
+                                    parent.innerText = c.name;
+                                    parent.className += ' text-[10px] text-center font-bold text-slate-600 leading-tight p-2';
+                                }
+                              }}
+                            />
+                        </div>
+                    </BorderGlow>
                 ))}
                 
                 <div className="hidden md:block w-px h-12 bg-slate-200 mx-2"></div>
@@ -49,21 +52,23 @@ const Partners: React.FC<PartnersProps> = ({ showCollaborators = true, className
                 {/* Media Partner */}
                 <div className="flex items-center gap-4">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest hidden lg:block">Media Partner</span>
-                    <div className="group relative h-16 md:h-20 w-32 md:w-40 bg-white border border-slate-200 rounded-xl flex items-center justify-center p-2 shadow-sm hover:shadow-md hover:border-red-200 transition-all cursor-pointer">
-                        <img 
-                          src={PARTNERS.media.logo} 
-                          alt={PARTNERS.media.name} 
-                          className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
-                          onError={(e) => {
-                            const parent = e.currentTarget.parentElement;
-                            if (parent) {
-                                e.currentTarget.style.display = 'none';
-                                parent.innerText = PARTNERS.media.name;
-                                parent.className += ' text-[10px] text-center font-bold text-slate-600 leading-tight p-2';
-                            }
-                          }}
-                        />
-                    </div>
+                    <BorderGlow borderRadius={12} backgroundColor="#ffffff" glowColor="0 84% 60%" className="h-16 md:h-20 w-32 md:w-40">
+                        <div className="group relative w-full h-full flex items-center justify-center p-2 cursor-pointer">
+                            <img
+                              src={PARTNERS.media.logo}
+                              alt={PARTNERS.media.name}
+                              className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                              onError={(e) => {
+                                const parent = e.currentTarget.parentElement;
+                                if (parent) {
+                                    e.currentTarget.style.display = 'none';
+                                    parent.innerText = PARTNERS.media.name;
+                                    parent.className += ' text-[10px] text-center font-bold text-slate-600 leading-tight p-2';
+                                }
+                              }}
+                            />
+                        </div>
+                    </BorderGlow>
                 </div>
             </div>
         </div>

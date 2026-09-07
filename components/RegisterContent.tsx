@@ -4,6 +4,7 @@ import SectionWrapper from './SectionWrapper';
 import { REGISTRATION_CATEGORIES, PASS_TIERS, PAYMENT_PORTAL_URL, GOOGLE_SCRIPT_URL } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronRight, Loader2, Star, X } from 'lucide-react';
+import BorderGlow from './BorderGlow';
 
 const RegisterContent: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -287,7 +288,8 @@ const RegisterContent: React.FC = () => {
                         exit={{ opacity: 0, height: 0 }}
                         className="max-w-2xl mx-auto pt-8 border-t border-slate-200"
                       >
-                          <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 md:p-12 relative overflow-hidden">
+                          <BorderGlow borderRadius={24} backgroundColor="#ffffff" glowColor="217 91% 60%">
+                          <div className="p-6 md:p-12 relative overflow-hidden">
                               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500" />
                               
                               <h3 className="text-2xl font-bold text-slate-900 mb-2">Final Step: Your Details</h3>
@@ -363,6 +365,7 @@ const RegisterContent: React.FC = () => {
                                   </p>
                               </form>
                           </div>
+                          </BorderGlow>
                       </motion.div>
                   )}
               </AnimatePresence>

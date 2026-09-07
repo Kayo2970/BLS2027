@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Send, Loader2 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { WHATSAPP_NUMBER, GOOGLE_SCRIPT_URL } from '../constants';
+import BorderGlow from './BorderGlow';
 
 const ContactForm: React.FC = () => {
   const location = useLocation();
@@ -84,7 +85,8 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+    <BorderGlow borderRadius={16} backgroundColor="#ffffff" glowColor="217 91% 60%">
+    <div className="p-8">
         <h3 className="text-2xl font-bold text-slate-900 mb-6">Send us a message</h3>
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
             <div className="grid md:grid-cols-2 gap-4">
@@ -155,6 +157,7 @@ const ContactForm: React.FC = () => {
             </p>
         </form>
     </div>
+    </BorderGlow>
   );
 };
 

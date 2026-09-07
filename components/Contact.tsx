@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook, Youtube, AtSign, Map as MapIcon } from 'lucide-react';
 import { SOCIAL_LINKS, CONTACT_EMAIL, LOGO_URL } from '../constants';
+import BorderGlow from './BorderGlow';
 
 const Contact: React.FC = () => {
   const [mapActive, setMapActive] = useState(false);
@@ -93,20 +94,21 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Map Integration with Scroll Trap Fix */}
-            <div className="w-full h-64 rounded-2xl overflow-hidden mb-12 border border-slate-800 shadow-2xl relative group">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.082729289279!2d77.56345637507746!3d13.02941398729119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17d967b55555%3A0x76f576d756d1180!2sUniversity%20House!5e0!3m2!1sen!2sin" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0, pointerEvents: mapActive ? 'auto' : 'none' }} 
-                    allowFullScreen 
-                    loading="lazy" 
+            <BorderGlow borderRadius={16} backgroundColor="#0f172a" glowColor="217 91% 60%" className="mb-12">
+            <div className="w-full h-64 overflow-hidden relative group">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.082729289279!2d77.56345637507746!3d13.02941398729119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17d967b55555%3A0x76f576d756d1180!2sUniversity%20House!5e0!3m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, pointerEvents: mapActive ? 'auto' : 'none' }}
+                    allowFullScreen
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
-                
+
                 {/* Overlay to enable interaction */}
                 {!mapActive && (
-                    <div 
+                    <div
                         className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer transition-opacity hover:bg-black/30"
                         onClick={() => setMapActive(true)}
                     >
@@ -116,6 +118,7 @@ const Contact: React.FC = () => {
                     </div>
                 )}
             </div>
+            </BorderGlow>
 
             <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="text-slate-500 text-xs">

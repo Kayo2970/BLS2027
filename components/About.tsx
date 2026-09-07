@@ -5,6 +5,7 @@ import SectionWrapper from './SectionWrapper';
 import { Target, Eye, Globe, Zap, ShieldCheck, Activity, ChevronRight, Layers } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import BorderGlow from './BorderGlow';
 
 const About: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'centre' | 'summit'>('centre');
@@ -122,67 +123,77 @@ const About: React.FC = () => {
                         <div className="grid grid-cols-2 gap-4 h-full relative z-10 p-4">
                             
                             {/* Vision Card */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className="col-span-2 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-2xl shadow-slate-200/50 relative overflow-hidden group"
+                                className="col-span-2"
                             >
-                                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
-                                    <Eye size={120} />
-                                </div>
-                                <div className="relative z-10">
-                                    <div className="inline-flex items-center gap-2 mb-4">
-                                        <div className="w-2 h-2 bg-blue-600 rounded-full" />
-                                        <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Our Vision</span>
+                              <BorderGlow borderRadius={32} backgroundColor="#ffffff" glowColor="217 91% 60%">
+                                <div className="group p-8 relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity">
+                                        <Eye size={120} />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">
-                                        Reshaping Bharat's Future
-                                    </h3>
-                                    <p className="text-slate-500 text-sm leading-relaxed max-w-lg">
-                                        To empower future leaders to be purpose-driven, ethical changemakers who champion sustainable innovation and shape an equitable, resilient future.
-                                    </p>
+                                    <div className="relative z-10">
+                                        <div className="inline-flex items-center gap-2 mb-4">
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                                            <span className="text-xs font-bold uppercase tracking-widest text-blue-600">Our Vision</span>
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-900 mb-2 leading-tight">
+                                            Reshaping Bharat's Future
+                                        </h3>
+                                        <p className="text-slate-500 text-sm leading-relaxed max-w-lg">
+                                            To empower future leaders to be purpose-driven, ethical changemakers who champion sustainable innovation and shape an equitable, resilient future.
+                                        </p>
+                                    </div>
+                                    {/* Tech Scanline */}
+                                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
                                 </div>
-                                {/* Tech Scanline */}
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
+                              </BorderGlow>
                             </motion.div>
 
                             {/* Mission Card */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-xl shadow-slate-200/50 hover:border-blue-300 transition-colors flex flex-col justify-between group"
                             >
-                                <div className="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                    <Target className="text-orange-500 w-5 h-5" />
+                              <BorderGlow borderRadius={32} backgroundColor="#ffffff" glowColor="24 95% 53%" className="h-full">
+                                <div className="group p-6 flex flex-col justify-between h-full">
+                                    <div className="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <Target className="text-orange-500 w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-slate-900 mb-2">Mission</h3>
+                                        <p className="text-slate-500 text-xs font-medium leading-relaxed">
+                                            To empower future leaders through experiential learning, ethical mentorship, and sustainability-driven action for purposeful and impactful leadership.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="text-lg font-bold text-slate-900 mb-2">Mission</h3>
-                                    <p className="text-slate-500 text-xs font-medium leading-relaxed">
-                                        To empower future leaders through experiential learning, ethical mentorship, and sustainability-driven action for purposeful and impactful leadership.
-                                    </p>
-                                </div>
+                              </BorderGlow>
                             </motion.div>
 
                             {/* Interactive Data Card */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="bg-gradient-to-br from-blue-600 to-blue-700 p-6 rounded-[2rem] border border-blue-500/50 relative overflow-hidden group cursor-pointer hover:shadow-[0_10px_30px_rgba(37,99,235,0.4)] transition-all"
                             >
-                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay" />
-                                <div className="relative z-10 h-full flex flex-col justify-between">
-                                     <div className="flex justify-between items-start">
-                                        <Activity className="text-white/80 w-6 h-6" />
-                                        <span className="text-[10px] font-bold bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded text-white">GOAL</span>
-                                     </div>
-                                     <div>
-                                        <div className="text-3xl font-bold text-white mb-1">100+</div>
-                                        <p className="text-blue-100 text-xs font-medium">Delegates Expected</p>
-                                     </div>
+                              <BorderGlow borderRadius={32} backgroundColor="#1d4ed8" glowColor="217 91% 75%" className="h-full">
+                                <div className="group relative overflow-hidden cursor-pointer h-full p-6">
+                                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay" />
+                                    <div className="relative z-10 h-full flex flex-col justify-between">
+                                         <div className="flex justify-between items-start">
+                                            <Activity className="text-white/80 w-6 h-6" />
+                                            <span className="text-[10px] font-bold bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded text-white">GOAL</span>
+                                         </div>
+                                         <div>
+                                            <div className="text-3xl font-bold text-white mb-1">100+</div>
+                                            <p className="text-blue-100 text-xs font-medium">Delegates Expected</p>
+                                         </div>
+                                    </div>
                                 </div>
+                              </BorderGlow>
                             </motion.div>
                         </div>
                     </div>
