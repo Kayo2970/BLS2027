@@ -7,6 +7,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import BorderGlow from './BorderGlow';
 
+// Speakers/moderators whose photo isn't confirmed yet point at an image path
+// that doesn't exist in public/images (e.g. tba-1.webp). Rather than showing
+// a broken-image icon, fall back to the same placeholder-person glyph used
+// when no image path is set at all.
+const PersonAvatar: React.FC<{ src?: string; alt: string; iconSize: number; iconClassName: string }> = ({
+  src,
+  alt,
+  iconSize,
+  iconClassName,
+}) => {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return <User size={iconSize} className={iconClassName} />;
+  }
+
+  return <img src={src} alt={alt} className="w-full h-full object-cover" onError={() => setFailed(true)} />;
+};
+
 const Agenda: React.FC = () => {
   const [activeDay, setActiveDay] = useState<'day1' | 'day2'>('day1');
   const [selectedSession, setSelectedSession] = useState<any | null>(null);
@@ -234,11 +253,12 @@ const Agenda: React.FC = () => {
                                     <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Moderator</h4>
                                     <div className="flex items-center gap-4 p-4 rounded-2xl bg-indigo-50 border border-indigo-100">
                                         <div className="w-16 h-16 rounded-full bg-indigo-200 overflow-hidden flex-shrink-0 flex items-center justify-center border-2 border-white shadow-sm">
-                                            {selectedSession.moderator.image ? (
-                                                <img src={selectedSession.moderator.image} alt={selectedSession.moderator.name} className="w-full h-full object-cover" />
-                                            ) : (
-                                                <User size={24} className="text-indigo-400" />
-                                            )}
+                                            <PersonAvatar
+                                                src={selectedSession.moderator.image}
+                                                alt={selectedSession.moderator.name}
+                                                iconSize={24}
+                                                iconClassName="text-indigo-400"
+                                            />
                                         </div>
                                         <div>
                                             <h5 className={`text-lg font-bold ${!selectedSession.moderator.confirmed ? 'text-slate-500' : 'text-slate-900'}`}>
@@ -259,11 +279,12 @@ const Agenda: React.FC = () => {
                                         {selectedSession.speakers.map((speaker: any, idx: number) => (
                                             <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-blue-100 hover:shadow-md transition-all bg-white">
                                                 <div className="w-12 h-12 rounded-full bg-slate-100 overflow-hidden flex-shrink-0 flex items-center justify-center border-2 border-white shadow-sm">
-                                                    {speaker.image ? (
-                                                        <img src={speaker.image} alt={speaker.name} className="w-full h-full object-cover" />
-                                                    ) : (
-                                                        <User size={20} className="text-slate-400" />
-                                                    )}
+                                                    <PersonAvatar
+                                                        src={speaker.image}
+                                                        alt={speaker.name}
+                                                        iconSize={20}
+                                                        iconClassName="text-slate-400"
+                                                    />
                                                 </div>
                                                 <div>
                                                     <h5 className={`font-bold ${!speaker.confirmed ? 'text-slate-500' : 'text-slate-900'}`}>

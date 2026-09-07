@@ -11,6 +11,10 @@ type Tab = 'governing' | 'corporate' | 'academic';
 
 const Speakers: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('governing');
+  // Tracks image paths that failed to load so we can fall back to the
+  // placeholder-person glyph instead of a broken-image icon.
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+  const markImageFailed = (src: string) => setFailedImages((prev) => new Set(prev).add(src));
   const location = useLocation();
 
   useEffect(() => {
@@ -81,11 +85,12 @@ const Speakers: React.FC = () => {
                                     <div className="relative z-10 flex flex-col items-center justify-center mb-8">
                                         <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-white shadow-xl mb-4">
                                             <div className="laser-line"></div>
-                                            {speaker.image ? (
+                                            {speaker.image && !failedImages.has(speaker.image) ? (
                                                 <img
                                                     src={speaker.image}
                                                     alt={speaker.name}
                                                     className="w-full h-full object-cover portrait-grayscale"
+                                                    onError={() => markImageFailed(speaker.image)}
                                                 />
                                             ) : (
                                                 <div className="w-full h-full bg-slate-100 flex items-center justify-center portrait-grayscale">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionWrapper from './SectionWrapper';
 import { COMMITTEES } from '../constants';
 import { motion } from 'framer-motion';
@@ -14,6 +14,7 @@ interface CommitteeMember {
 }
 
 const CommitteeCard: React.FC<{ member: CommitteeMember, delay: number, type: 'exec' | 'core' }> = ({ member, delay, type }) => {
+  const [imageFailed, setImageFailed] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,11 +37,12 @@ const CommitteeCard: React.FC<{ member: CommitteeMember, delay: number, type: 'e
           <div className="p-6 relative z-10 flex flex-col h-full">
             <div className="relative w-16 h-16 rounded-2xl mb-4 flex items-center justify-center text-xl font-bold shadow-sm overflow-hidden bg-white">
                <div className="laser-line"></div>
-               {member.image ? (
+               {member.image && !imageFailed ? (
                    <img
                      src={member.image}
                      alt={member.name}
                      className="w-full h-full object-cover portrait-grayscale"
+                     onError={() => setImageFailed(true)}
                    />
                ) : (
                    <div className={`

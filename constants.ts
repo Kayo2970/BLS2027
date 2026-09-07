@@ -447,9 +447,6 @@ export const HIGHLIGHTS = [
   }
 ];
 
-// Placeholder image for speakers/committees if no image is provided.
-const PLACEHOLDER_AVATAR = "/images/core/avatar-placeholder.webp";
-
 export const SPEAKERS = {
   governing: [
     { name: 'Mr. Ramanan Ramanathan', image: "/images/speakers/ramanan-ramanathan.webp", title: 'Chairperson, Dept of Science & Technology, GoI', role: 'Mission Director, Atal Innovation Mission', linkedin: "https://www.linkedin.com/in/rramanan27" },
