@@ -4,6 +4,7 @@ import { HIGHLIGHTS } from '../constants';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import BorderGlow from './BorderGlow';
 
 interface HighlightsProps {
     limit?: number;
@@ -38,20 +39,23 @@ const Highlights: React.FC<HighlightsProps> = ({ limit, showTitle = true }) => {
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: idx * 0.08, duration: 0.5 }}
                     whileHover={{ y: -4 }}
-                    className="group glass-card rounded-2xl p-7 flex flex-col items-start text-left border border-slate-200/80 relative overflow-hidden"
                 >
-                    <div className={`w-12 h-12 rounded-xl bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300`}>
-                        <item.icon className="w-6 h-6" />
-                    </div>
+                    <BorderGlow borderRadius={16} backgroundColor="rgba(255,255,255,0.85)" glowColor="217 91% 60%">
+                        <div className="group p-7 flex flex-col items-start text-left relative overflow-hidden">
+                            <div className={`w-12 h-12 rounded-xl bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300`}>
+                                <item.icon className="w-6 h-6" />
+                            </div>
 
-                    <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h3>
-                    <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                        {item.description}
-                    </p>
+                            <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                                {item.description}
+                            </p>
 
-                    <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-auto">
-                        <div className={`h-full ${item.color} w-0 group-hover:w-full transition-all duration-500`} />
-                    </div>
+                            <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mt-auto">
+                                <div className={`h-full ${item.color} w-0 group-hover:w-full transition-all duration-500`} />
+                            </div>
+                        </div>
+                    </BorderGlow>
                 </motion.div>
                 ))}
             </div>

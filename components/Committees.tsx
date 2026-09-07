@@ -3,6 +3,7 @@ import SectionWrapper from './SectionWrapper';
 import { COMMITTEES } from '../constants';
 import { motion } from 'framer-motion';
 import { User, Award, Layers, Linkedin, ExternalLink, Users, Handshake } from 'lucide-react';
+import BorderGlow from './BorderGlow';
 
 interface CommitteeMember {
   name: string;
@@ -19,68 +20,72 @@ const CommitteeCard: React.FC<{ member: CommitteeMember, delay: number, type: 'e
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: delay, duration: 0.5 }}
       whileHover={{ y: -5 }}
-      className={`
-        group relative overflow-hidden rounded-3xl border transition-all duration-500 flex flex-col
-        ${type === 'exec' 
-          ? 'bg-white border-slate-200 hover:shadow-[0_20px_40px_rgba(37,99,235,0.1)] hover:border-blue-300' 
-          : 'bg-slate-50 border-slate-100 hover:shadow-lg hover:border-blue-200'}
-      `}
+      className="h-full"
     >
-      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-        <User size={80} />
-      </div>
-      
-      <div className="p-6 relative z-10 flex flex-col h-full">
-        <div className="relative w-16 h-16 rounded-2xl mb-4 flex items-center justify-center text-xl font-bold shadow-sm overflow-hidden bg-white">
-           <div className="laser-line"></div>
-           {member.image ? (
-               <img 
-                 src={member.image} 
-                 alt={member.name} 
-                 className="w-full h-full object-cover portrait-grayscale" 
-               />
-           ) : (
-               <div className={`
-                 w-full h-full flex items-center justify-center portrait-grayscale
-                 ${type === 'exec' 
-                    ? 'bg-gradient-to-br from-blue-100 to-cyan-50 text-blue-600' 
-                    : 'bg-white text-slate-500'}
-               `}>
-                 {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-               </div>
-           )}
-        </div>
+      <BorderGlow
+        borderRadius={24}
+        backgroundColor={type === 'exec' ? '#ffffff' : '#f8fafc'}
+        glowColor={type === 'exec' ? '217 91% 60%' : '221 83% 63%'}
+        className="h-full"
+      >
+        <div className="group relative overflow-hidden flex flex-col h-full">
+          <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+            <User size={80} />
+          </div>
 
-        <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
-          {member.name}
-        </h3>
-        
-        <p className={`font-black text-[10px] uppercase tracking-[0.2em] mb-3 ${type === 'exec' ? 'text-orange-500' : 'text-blue-500'}`}>
-          {member.role}
-        </p>
-        
-        <p className="text-sm text-slate-500 mb-6 leading-snug font-medium italic">
-          {member.designation}
-        </p>
-
-        <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
-          <span className="text-[10px] text-slate-400 font-bold uppercase">Member</span>
-          {member.linkedin ? (
-            <a 
-                href={member.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-all"
-            >
-                <Linkedin className="w-4 h-4" />
-            </a>
-          ) : (
-            <div className="p-2 text-slate-200">
-                <Linkedin className="w-4 h-4 opacity-30" />
+          <div className="p-6 relative z-10 flex flex-col h-full">
+            <div className="relative w-16 h-16 rounded-2xl mb-4 flex items-center justify-center text-xl font-bold shadow-sm overflow-hidden bg-white">
+               <div className="laser-line"></div>
+               {member.image ? (
+                   <img
+                     src={member.image}
+                     alt={member.name}
+                     className="w-full h-full object-cover portrait-grayscale"
+                   />
+               ) : (
+                   <div className={`
+                     w-full h-full flex items-center justify-center portrait-grayscale
+                     ${type === 'exec'
+                        ? 'bg-gradient-to-br from-blue-100 to-cyan-50 text-blue-600'
+                        : 'bg-white text-slate-500'}
+                   `}>
+                     {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                   </div>
+               )}
             </div>
-          )}
+
+            <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-1">
+              {member.name}
+            </h3>
+
+            <p className={`font-black text-[10px] uppercase tracking-[0.2em] mb-3 ${type === 'exec' ? 'text-orange-500' : 'text-blue-500'}`}>
+              {member.role}
+            </p>
+
+            <p className="text-sm text-slate-500 mb-6 leading-snug font-medium italic">
+              {member.designation}
+            </p>
+
+            <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span className="text-[10px] text-slate-400 font-bold uppercase">Member</span>
+              {member.linkedin ? (
+                <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-all"
+                >
+                    <Linkedin className="w-4 h-4" />
+                </a>
+              ) : (
+                <div className="p-2 text-slate-200">
+                    <Linkedin className="w-4 h-4 opacity-30" />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      </BorderGlow>
     </motion.div>
   );
 };

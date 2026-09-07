@@ -5,6 +5,7 @@ import { SUMMIT_SCHEDULE, BROCHURE_URL } from '../constants';
 import { Sparkles, Calendar, ChevronRight, Clock, ExternalLink, Users, X, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
+import BorderGlow from './BorderGlow';
 
 const Agenda: React.FC = () => {
   const [activeDay, setActiveDay] = useState<'day1' | 'day2'>('day1');
@@ -125,50 +126,54 @@ const Agenda: React.FC = () => {
                                         {/* Event Card */}
                                         <div className="w-full md:w-1/2 px-8">
                                             {itemWithLink.link ? (
-                                                <a 
-                                                    href={itemWithLink.link}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="block p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all relative"
-                                                >
-                                                    <div className="absolute top-4 right-4 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        <ExternalLink size={16} />
-                                                    </div>
-                                                    <div className="flex items-center gap-4 mb-2">
-                                                        <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors">
-                                                            <item.icon size={20} />
+                                                <BorderGlow borderRadius={16} backgroundColor="#ffffff" glowColor="217 91% 60%">
+                                                    <a
+                                                        href={itemWithLink.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="block p-6 relative"
+                                                    >
+                                                        <div className="absolute top-4 right-4 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                            <ExternalLink size={16} />
                                                         </div>
-                                                        <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">
-                                                            {item.event}
-                                                        </h3>
-                                                    </div>
-                                                    <p className="text-sm text-slate-500 leading-relaxed ml-12">
-                                                        Engagement session with industry experts and interactive networking.
-                                                    </p>
-                                                </a>
+                                                        <div className="flex items-center gap-4 mb-2">
+                                                            <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors">
+                                                                <item.icon size={20} />
+                                                            </div>
+                                                            <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">
+                                                                {item.event}
+                                                            </h3>
+                                                        </div>
+                                                        <p className="text-sm text-slate-500 leading-relaxed ml-12">
+                                                            Engagement session with industry experts and interactive networking.
+                                                        </p>
+                                                    </a>
+                                                </BorderGlow>
                                             ) : (
-                                                <div className="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-100 transition-all">
-                                                    <div className="flex items-center gap-4 mb-2">
-                                                        <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors">
-                                                            <item.icon size={20} />
+                                                <BorderGlow borderRadius={16} backgroundColor="#ffffff" glowColor="217 91% 60%">
+                                                    <div className="p-6">
+                                                        <div className="flex items-center gap-4 mb-2">
+                                                            <div className="p-2 bg-slate-50 rounded-lg text-slate-400 group-hover:text-blue-600 group-hover:bg-blue-50 transition-colors">
+                                                                <item.icon size={20} />
+                                                            </div>
+                                                            <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">
+                                                                {item.event}
+                                                            </h3>
                                                         </div>
-                                                        <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition-colors">
-                                                            {item.event}
-                                                        </h3>
+
+                                                        {(hasSpeakers || hasModerator) && (
+                                                            <div className="ml-12 mt-4">
+                                                                <button
+                                                                    onClick={() => setSelectedSession(itemWithLink)}
+                                                                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-semibold hover:bg-blue-100 transition-colors"
+                                                                >
+                                                                    <Users size={16} />
+                                                                    View Speakers
+                                                                </button>
+                                                            </div>
+                                                        )}
                                                     </div>
-                                                    
-                                                    {(hasSpeakers || hasModerator) && (
-                                                        <div className="ml-12 mt-4">
-                                                            <button 
-                                                                onClick={() => setSelectedSession(itemWithLink)}
-                                                                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-semibold hover:bg-blue-100 transition-colors"
-                                                            >
-                                                                <Users size={16} />
-                                                                View Speakers
-                                                            </button>
-                                                        </div>
-                                                    )}
-                                                </div>
+                                                </BorderGlow>
                                             )}
                                         </div>
                                     </div>

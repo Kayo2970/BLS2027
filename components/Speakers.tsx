@@ -5,6 +5,7 @@ import { SPEAKERS } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Linkedin, User, Quote, ExternalLink } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import BorderGlow from './BorderGlow';
 
 type Tab = 'governing' | 'corporate' | 'academic';
 
@@ -70,53 +71,57 @@ const Speakers: React.FC = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: idx * 0.05 }}
-                            className="group relative bg-white rounded-3xl p-8 border border-slate-200 hover:border-blue-400 hover:shadow-[0_20px_50px_rgba(59,130,246,0.12)] transition-all duration-500 flex flex-col items-center text-center h-full overflow-hidden"
+                            className="h-full"
                         >
-                            {/* Techy Background Accent */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-[100%] group-hover:bg-blue-50 transition-colors duration-500 -z-0" />
-                            
-                            <div className="relative z-10 flex flex-col items-center justify-center mb-8">
-                                <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-white shadow-xl mb-4">
-                                    <div className="laser-line"></div>
-                                    {speaker.image ? (
-                                        <img 
-                                            src={speaker.image} 
-                                            alt={speaker.name} 
-                                            className="w-full h-full object-cover portrait-grayscale" 
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full bg-slate-100 flex items-center justify-center portrait-grayscale">
-                                            <User className="text-slate-300 w-10 h-10" />
-                                        </div>
-                                    )}
-                                </div>
-                                <Quote className="text-blue-50 w-10 h-10 fill-current group-hover:text-blue-100 transition-colors absolute top-0 right-0 -mr-12 -mt-4 opacity-50" />
-                            </div>
-                            
-                            <div className="relative z-10 mt-auto flex flex-col items-center">
-                                <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{speaker.name}</h3>
-                                <p className="text-xs font-black text-orange-500 mt-1 uppercase tracking-widest">{speaker.title}</p>
-                                <div className="h-px w-8 bg-slate-200 my-4 group-hover:w-full group-hover:bg-blue-100 transition-all duration-500"></div>
-                                <p className="text-sm text-slate-500 leading-relaxed italic line-clamp-2">"{speaker.role}"</p>
-                            </div>
+                            <BorderGlow borderRadius={24} backgroundColor="#ffffff" glowColor="217 91% 60%" className="h-full">
+                                <div className="group relative p-8 flex flex-col items-center text-center h-full overflow-hidden">
+                                    {/* Techy Background Accent */}
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-[100%] group-hover:bg-blue-50 transition-colors duration-500 -z-0" />
 
-                            <div className="relative z-10 mt-8 pt-6 border-t border-slate-50 flex items-center justify-between">
-                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Verified Profile</span>
-                                {speaker.linkedin ? (
-                                    <a 
-                                        href={speaker.linkedin} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm"
-                                    >
-                                        <Linkedin size={14} /> Profile <ExternalLink size={10} />
-                                    </a>
-                                ) : (
-                                    <span className="text-xs font-bold text-slate-300 flex items-center gap-1">
-                                        Private <Linkedin size={14} className="opacity-30" />
-                                    </span>
-                                )}
-                            </div>
+                                    <div className="relative z-10 flex flex-col items-center justify-center mb-8">
+                                        <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-white shadow-xl mb-4">
+                                            <div className="laser-line"></div>
+                                            {speaker.image ? (
+                                                <img
+                                                    src={speaker.image}
+                                                    alt={speaker.name}
+                                                    className="w-full h-full object-cover portrait-grayscale"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-slate-100 flex items-center justify-center portrait-grayscale">
+                                                    <User className="text-slate-300 w-10 h-10" />
+                                                </div>
+                                            )}
+                                        </div>
+                                        <Quote className="text-blue-50 w-10 h-10 fill-current group-hover:text-blue-100 transition-colors absolute top-0 right-0 -mr-12 -mt-4 opacity-50" />
+                                    </div>
+
+                                    <div className="relative z-10 mt-auto flex flex-col items-center">
+                                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{speaker.name}</h3>
+                                        <p className="text-xs font-black text-orange-500 mt-1 uppercase tracking-widest">{speaker.title}</p>
+                                        <div className="h-px w-8 bg-slate-200 my-4 group-hover:w-full group-hover:bg-blue-100 transition-all duration-500"></div>
+                                        <p className="text-sm text-slate-500 leading-relaxed italic line-clamp-2">"{speaker.role}"</p>
+                                    </div>
+
+                                    <div className="relative z-10 mt-8 pt-6 border-t border-slate-50 flex items-center justify-between">
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Verified Profile</span>
+                                        {speaker.linkedin ? (
+                                            <a
+                                                href={speaker.linkedin}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm"
+                                            >
+                                                <Linkedin size={14} /> Profile <ExternalLink size={10} />
+                                            </a>
+                                        ) : (
+                                            <span className="text-xs font-bold text-slate-300 flex items-center gap-1">
+                                                Private <Linkedin size={14} className="opacity-30" />
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+                            </BorderGlow>
                         </motion.div>
                     ))}
                 </motion.div>

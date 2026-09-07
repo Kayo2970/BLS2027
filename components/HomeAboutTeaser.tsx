@@ -3,6 +3,7 @@ import React from 'react';
 import SectionWrapper from './SectionWrapper';
 import { ArrowUpRight, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BorderGlow from './BorderGlow';
 
 const HomeAboutTeaser: React.FC = () => {
   return (
@@ -35,19 +36,21 @@ const HomeAboutTeaser: React.FC = () => {
                         <div className="absolute inset-8 border border-dashed border-blue-200 rounded-full animate-[spin_25s_linear_infinite_reverse]" />
                         
                         {/* Glass Card - Updated to fill completely with photo */}
-                        <div className="relative z-10 w-72 h-72 sm:w-96 sm:h-96 bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(37,99,235,0.15)] border border-white/60 backdrop-blur-xl flex items-center justify-center overflow-hidden transform hover:scale-105 transition-transform duration-500">
+                        <BorderGlow borderRadius={32} backgroundColor="#ffffff" glowColor="217 91% 60%" className="relative z-10 w-72 h-72 sm:w-96 sm:h-96 transform hover:scale-105 transition-transform duration-500">
+                        <div className="w-full h-full flex items-center justify-center overflow-hidden">
                              {/* Overlay for depth */}
                              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-60 z-10 pointer-events-none" />
-                             
+
                              {/* Subtle Grid */}
                              <div className="absolute inset-0 bg-grid-slate opacity-[0.1] z-10 pointer-events-none" />
 
-                             <img 
-                                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070" 
-                                alt="Bharat Lead Summit Event" 
+                             <img
+                                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=2070"
+                                alt="Bharat Lead Summit Event"
                                 className="w-full h-full object-cover relative z-0"
                              />
                         </div>
+                        </BorderGlow>
 
                         {/* Floating Elements - Kept for tech feel */}
                         <div className="absolute top-12 right-12 p-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100 animate-float z-20">

@@ -6,6 +6,7 @@ import { SPONSORSHIP_MATRIX } from '../constants';
 import { Check, ShieldCheck, Zap, Info, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import BorderGlow from './BorderGlow';
 
 interface SponsorshipCardProps {
     name: string;
@@ -66,11 +67,15 @@ const SponsorshipCard: React.FC<SponsorshipCardProps> = ({
                  <div className={`absolute inset-0 bg-gradient-to-br ${themeStyles.highlight} opacity-20 pointer-events-none`} />
              )}
 
-            <div className={`
-                relative h-full flex flex-col bg-white rounded-[1.3rem] p-8 border
-                ${themeStyles.border}
-            `}>
-                
+            <BorderGlow
+                borderRadius={21}
+                backgroundColor="#ffffff"
+                glowColor={colorTheme === 'purple' ? '271 91% 65%' : '217 91% 60%'}
+                glowIntensity={isPremium ? 1.4 : 1}
+                className="h-full"
+            >
+            <div className="relative h-full flex flex-col p-8">
+
                 {/* Badge */}
                 {(isPremium || badgeText) && (
                     <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg flex items-center gap-1 z-20 text-white ${themeStyles.highlight}`}>
@@ -105,7 +110,7 @@ const SponsorshipCard: React.FC<SponsorshipCardProps> = ({
                     ))}
                 </div>
 
-                <button 
+                <button
                     onClick={onSelect}
                     className={`
                         w-full py-4 rounded-xl font-bold text-sm transition-all duration-300 shadow-lg relative overflow-hidden group
@@ -118,6 +123,7 @@ const SponsorshipCard: React.FC<SponsorshipCardProps> = ({
                     <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </button>
             </div>
+            </BorderGlow>
         </motion.div>
     );
 };

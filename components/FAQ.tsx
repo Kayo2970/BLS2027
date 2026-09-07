@@ -5,38 +5,43 @@ import { FAQ_DATA } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BorderGlow from './BorderGlow';
 
 const FAQItem: React.FC<{ item: typeof FAQ_DATA[0], isOpen: boolean, toggle: () => void }> = ({ item, isOpen, toggle }) => {
   return (
-    <div className={`mb-4 overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen ? 'bg-white border-blue-200 shadow-lg' : 'bg-white/50 border-slate-100 hover:border-slate-300'}`}>
-      <button 
-        onClick={toggle}
-        className="w-full flex items-center justify-between p-6 text-left focus:outline-none group"
-      >
-        <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-blue-600' : 'text-slate-800 group-hover:text-blue-500'}`}>
-          {item.question}
-        </span>
-        <div className={`p-2 rounded-xl transition-all duration-300 ${isOpen ? 'bg-blue-600 text-white rotate-0' : 'bg-slate-100 text-slate-500 rotate-90'}`}>
-          {isOpen ? <Minus size={18} /> : <Plus size={18} />}
-        </div>
-      </button>
-      
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+    <div className="mb-4">
+      <BorderGlow borderRadius={16} backgroundColor={isOpen ? '#ffffff' : 'rgba(255,255,255,0.5)'} glowColor="217 91% 60%">
+        <div className="overflow-hidden">
+          <button
+            onClick={toggle}
+            className="w-full flex items-center justify-between p-6 text-left focus:outline-none group"
           >
-            <div className="px-6 pb-6 pt-0 border-t border-slate-50">
-              <p className="text-slate-600 leading-relaxed pt-4">
-                {item.answer}
-              </p>
+            <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-blue-600' : 'text-slate-800 group-hover:text-blue-500'}`}>
+              {item.question}
+            </span>
+            <div className={`p-2 rounded-xl transition-all duration-300 ${isOpen ? 'bg-blue-600 text-white rotate-0' : 'bg-slate-100 text-slate-500 rotate-90'}`}>
+              {isOpen ? <Minus size={18} /> : <Plus size={18} />}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </button>
+
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div className="px-6 pb-6 pt-0 border-t border-slate-50">
+                  <p className="text-slate-600 leading-relaxed pt-4">
+                    {item.answer}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </BorderGlow>
     </div>
   );
 };
