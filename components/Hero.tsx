@@ -120,6 +120,23 @@ const TirangaBackground = () => (
   </div>
 );
 
+// Staggered fade + slide-up reveal: parent triggers each child in sequence
+const heroContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const heroItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 const VideoModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
     if (!isOpen) return null;
     return (
@@ -228,14 +245,17 @@ const Hero: React.FC = () => {
 
 
 
-        {/* Centered Content Wrapper */}
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-            
+        {/* Centered Content Wrapper - staggered fade + slide-up reveal */}
+        <motion.div
+            variants={heroContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-center text-center max-w-4xl mx-auto"
+        >
+
             {/* 1. EYEBROW BADGE */}
             <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                variants={heroItemVariants}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/80 shadow-sm mb-4"
             >
                 <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></div>
@@ -244,9 +264,7 @@ const Hero: React.FC = () => {
 
             {/* 2. INNOVATION CHALLENGE ANNOUNCEMENT */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1, duration: 0.4 }}
+                variants={heroItemVariants}
                 className="mb-6"
             >
                 <Link to="/register" className="cursor-pointer group">
@@ -262,9 +280,7 @@ const Hero: React.FC = () => {
 
             {/* 3. MAIN TITLE (Max 2 lines on desktop) */}
             <motion.h1
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
+                variants={heroItemVariants}
                 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 mb-4 leading-[1.02]"
             >
                 BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2027
@@ -272,19 +288,15 @@ const Hero: React.FC = () => {
 
             {/* 4. SUBTITLE (Max 20 words) */}
             <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 }}
+                variants={heroItemVariants}
                 className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 font-normal leading-relaxed max-w-xl mx-auto"
             >
                 Empowering the next generation of visionary leaders for sustainable growth and <span className="text-slate-900 font-semibold">Viksit Bharat 2047</span>.
             </motion.p>
-            
+
             {/* 5. DATE STATUS */}
             <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.35 }}
+                variants={heroItemVariants}
                 className="flex flex-wrap justify-center gap-2.5 xs:gap-3 sm:gap-4 mb-8"
             >
                 <div className="px-6 py-3 bg-blue-50 text-blue-700 rounded-2xl font-bold text-lg border border-blue-100">
@@ -294,9 +306,7 @@ const Hero: React.FC = () => {
 
             {/* 6. DATE & VENUE PILLS */}
             <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.45 }}
+                variants={heroItemVariants}
                 className="flex flex-wrap justify-center gap-3 mb-10"
             >
                 <div className="flex items-center gap-2.5 px-4 py-2 bg-white/90 rounded-xl shadow-xs border border-slate-200/80">
@@ -322,9 +332,7 @@ const Hero: React.FC = () => {
 
             {/* 7. ACTION BUTTONS */}
             <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.55 }}
+                variants={heroItemVariants}
                 className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md"
             >
                 <Link to="/register" className="w-full sm:w-auto flex-1">
@@ -349,9 +357,7 @@ const Hero: React.FC = () => {
 
             {/* 8. BOTTOM LOGOS (CO-HOSTED & ASSOCIATION) */}
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                variants={heroItemVariants}
                 className="mt-16 sm:mt-24 w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12"
             >
                 {/* Co-Hosted By */}
@@ -393,7 +399,7 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
             </motion.div>
-        </div>
+        </motion.div>
       </div>
     </header>
     </>
