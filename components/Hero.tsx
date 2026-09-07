@@ -14,18 +14,42 @@ const AshokaCharaBackground = () => (
     aria-hidden="true"
   >
     <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Ashoka Chakra behind the figure */}
-      <g stroke="#1e3a8a" strokeWidth="2">
-        <circle cx="200" cy="200" r="150" strokeOpacity="0.5" />
+      {/* Ashoka Chakra behind the figure - slowly rotating, based on the official 24-spoke wheel */}
+      <motion.g
+        style={{ transformOrigin: '200px 200px' }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+        fill="#1e3a8a"
+        fillOpacity="0.45"
+      >
+        {/* Outer rim */}
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#1e3a8a" strokeWidth="4" strokeOpacity="0.45" />
+        <circle cx="200" cy="200" r="136" fill="none" stroke="#1e3a8a" strokeWidth="2" strokeOpacity="0.35" />
+
+        {/* 24 tapered spokes */}
         {Array.from({ length: 24 }).map((_, i) => {
           const angle = (i * 360) / 24;
-          const rad = (angle * Math.PI) / 180;
-          const x2 = 200 + 150 * Math.cos(rad);
-          const y2 = 200 + 150 * Math.sin(rad);
-          return <line key={i} x1="200" y1="200" x2={x2} y2={y2} strokeOpacity="0.35" />;
+          return (
+            <path
+              key={i}
+              d="M200 200 L196 84 Q200 76 204 84 L200 200 Z"
+              transform={`rotate(${angle} 200 200)`}
+            />
+          );
         })}
-        <circle cx="200" cy="200" r="14" fill="#1e3a8a" fillOpacity="0.5" />
-      </g>
+
+        {/* Rim dots between spokes */}
+        {Array.from({ length: 24 }).map((_, i) => {
+          const angle = ((i + 0.5) * 360) / 24;
+          const rad = (angle * Math.PI) / 180;
+          const x = 200 + 150 * Math.cos(rad);
+          const y = 200 + 150 * Math.sin(rad);
+          return <circle key={i} cx={x} cy={y} r="3" />;
+        })}
+
+        {/* Hub */}
+        <circle cx="200" cy="200" r="16" />
+      </motion.g>
 
       {/* Emperor Ashoka character silhouette - crowned figure with hand raised in blessing */}
       <g fill="#0f172a">
