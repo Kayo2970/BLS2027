@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                         />
                       </div>
                       <span className="font-extrabold text-sm tracking-tight text-slate-900 hidden sm:inline-block">
-                        BLS <span className="text-blue-600">2026</span>
+                        BLS <span className="text-blue-600">2027</span>
                       </span>
                     </Link>
                 </div>
