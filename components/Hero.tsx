@@ -74,40 +74,62 @@ const AshokaCharaBackground = () => (
   </motion.div>
 );
 
+// A single wave tile spanning 0-800, repeated once more (800-1600) so that
+// translating the group by -800 loops seamlessly.
+const wavePath = (y: number, amp: number) =>
+  `M0,${y} C 200,${y - amp} 200,${y + amp} 400,${y} C 600,${y - amp} 600,${y + amp} 800,${y} ` +
+  `C 1000,${y - amp} 1000,${y + amp} 1200,${y} C 1400,${y - amp} 1400,${y + amp} 1600,${y}`;
+
+const TricolorLineBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <svg
+      viewBox="0 0 1600 400"
+      preserveAspectRatio="none"
+      className="absolute inset-0 w-full h-full"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter id="lineGlow" x="-20%" y="-100%" width="140%" height="300%">
+          <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#000000" floodOpacity="0.12" />
+        </filter>
+      </defs>
+
+      {/* Saffron flowing line */}
+      <motion.g
+        animate={{ x: [0, -800] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+      >
+        <path d={wavePath(150, 55)} fill="none" stroke="#FF9933" strokeWidth="4" strokeLinecap="round" opacity="0.85" />
+      </motion.g>
+
+      {/* White flowing line - glow filter keeps it visible against the light hero bg */}
+      <motion.g
+        animate={{ x: [-800, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        filter="url(#lineGlow)"
+      >
+        <path d={wavePath(200, 45)} fill="none" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" opacity="0.95" />
+      </motion.g>
+
+      {/* Green flowing line */}
+      <motion.g
+        animate={{ x: [0, -800] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+      >
+        <path d={wavePath(250, 55)} fill="none" stroke="#138808" strokeWidth="4" strokeLinecap="round" opacity="0.85" />
+      </motion.g>
+    </svg>
+
+    {/* Soft fade at the edges so the lines don't hard-cut against the viewport */}
+    <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-transparent to-slate-50 opacity-70" />
+    <div className="absolute inset-0 bg-slate-50/40" />
+  </div>
+);
+
 const TirangaBackground = () => (
   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-slate-50">
-    {/* 1. Premium Diagonal Gradients */}
-    <div className="absolute inset-[-25%] w-[150%] h-[150%] md:inset-[-50%] md:w-[200%] md:h-[200%] rotate-[-15deg] md:rotate-[-45deg] flex flex-col justify-center opacity-90 md:opacity-60">
-        
-        {/* Saffron Layer - Lighter, vibrant saffron */}
-        <motion.div 
-            className="flex-1 bg-gradient-to-b from-orange-500 via-orange-300 to-transparent blur-[60px] md:blur-[120px] will-change-transform"
-            animate={{ 
-                scaleY: [1, 1.1, 1],
-                opacity: [0.8, 1, 0.8]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* White Layer - Pure and clean */}
-        <motion.div 
-            className="flex-1 bg-white/90 blur-[50px] md:blur-[100px] will-change-transform"
-            animate={{ 
-                scale: [1, 1.05, 1],
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-
-        {/* Green Layer - Deep Emerald */}
-        <motion.div 
-            className="flex-1 bg-gradient-to-t from-emerald-700 via-emerald-500 to-transparent blur-[60px] md:blur-[120px] will-change-transform"
-            animate={{ 
-                scaleY: [1, 1.1, 1],
-                opacity: [0.7, 0.9, 0.7]
-            }}
-            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-        />
-    </div>
+    {/* 1. Tricolor Flowing Line - the main animated graphic */}
+    <TricolorLineBackground />
 
     {/* 2. The Requested Square Grid Overlay - Crisp and Technical */}
     <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
