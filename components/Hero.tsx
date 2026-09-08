@@ -5,75 +5,6 @@ import { Calendar, MapPin, ChevronRight, Play, X, UserPlus } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import { SHOWREEL_EMBED_URL, LOGO_URL } from '../constants';
 
-const AshokaCharaBackground = () => (
-  <motion.div
-    className="absolute -right-10 bottom-0 sm:right-0 sm:-bottom-4 md:right-6 lg:right-16 w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] md:w-[460px] md:h-[460px] z-0 pointer-events-none opacity-[0.09] md:opacity-[0.12]"
-    initial={{ y: 30 }}
-    animate={{ y: 0 }}
-    transition={{ duration: 1, delay: 0.2 }}
-    aria-hidden="true"
-  >
-    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      {/* Ashoka Chakra behind the figure - slowly rotating, based on the official 24-spoke wheel */}
-      <motion.g
-        style={{ transformOrigin: '200px 200px' }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
-        fill="#1e3a8a"
-        fillOpacity="0.45"
-      >
-        {/* Outer rim */}
-        <circle cx="200" cy="200" r="150" fill="none" stroke="#1e3a8a" strokeWidth="4" strokeOpacity="0.45" />
-        <circle cx="200" cy="200" r="136" fill="none" stroke="#1e3a8a" strokeWidth="2" strokeOpacity="0.35" />
-
-        {/* 24 tapered spokes */}
-        {Array.from({ length: 24 }).map((_, i) => {
-          const angle = (i * 360) / 24;
-          return (
-            <path
-              key={i}
-              d="M200 200 L196 84 Q200 76 204 84 L200 200 Z"
-              transform={`rotate(${angle} 200 200)`}
-            />
-          );
-        })}
-
-        {/* Rim dots between spokes */}
-        {Array.from({ length: 24 }).map((_, i) => {
-          const angle = ((i + 0.5) * 360) / 24;
-          const rad = (angle * Math.PI) / 180;
-          const x = 200 + 150 * Math.cos(rad);
-          const y = 200 + 150 * Math.sin(rad);
-          return <circle key={i} cx={x} cy={y} r="3" />;
-        })}
-
-        {/* Hub */}
-        <circle cx="200" cy="200" r="16" />
-      </motion.g>
-
-      {/* Emperor Ashoka character silhouette - crowned figure with hand raised in blessing */}
-      <g fill="#0f172a">
-        {/* Robe / body */}
-        <path d="M200 158c-11 0-21 5-27 14-14 20-24 46-24 78 0 26 6 46 10 58a12 12 0 0 0 11 8h60a12 12 0 0 0 11-8c4-12 10-32 10-58 0-32-10-58-24-78-6-9-16-14-27-14z" />
-        {/* Sash detail (saffron/green accent using currentColor via opacity) */}
-        <path d="M175 200l14 96M225 200l-14 96" stroke="#f97316" strokeWidth="4" strokeOpacity="0.6" fill="none" strokeLinecap="round" />
-        {/* Neck */}
-        <rect x="188" y="132" width="24" height="20" rx="6" />
-        {/* Head */}
-        <circle cx="200" cy="112" r="26" />
-        {/* Crown (three-peaked, referencing the Lion Capital) */}
-        <path d="M170 96l10-24 10 16 10-22 10 22 10-16 10 24c-6 6-40 6-60 0z" />
-        <circle cx="200" cy="66" r="4" fill="#f97316" />
-        {/* Raised arm in blessing gesture */}
-        <path d="M226 150c10-6 22-6 30 2 9 8 12 20 10 30-2 3-8 4-11 1-4-8-9-15-16-19-8-4-14-8-13-14z" />
-        <circle cx="262" cy="184" r="8" />
-        {/* Other arm resting */}
-        <path d="M176 152c-10 0-20 6-24 16-4 10-4 22 0 30 2 3 8 3 10-1 1-9 3-18 8-25 5-7 10-13 6-20z" />
-      </g>
-    </svg>
-  </motion.div>
-);
-
 // A single wave tile spanning 0-800, repeated once more (800-1600) so that
 // translating the group by -800 loops seamlessly.
 const wavePath = (y: number, amp: number) =>
@@ -215,9 +146,6 @@ const Hero: React.FC = () => {
         
         {/* Animated Blobs - Replaced with Tiranga Background */}
         <TirangaBackground />
-
-        {/* Ashoka Character Watermark */}
-        <AshokaCharaBackground />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
