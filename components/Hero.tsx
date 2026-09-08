@@ -300,20 +300,20 @@ const Hero: React.FC = () => {
                 </Link>
             </motion.div>
 
-            {/* 3. MAIN TITLE (Max 2 lines on desktop) */}
+            {/* 3. MAIN TITLE */}
             <motion.h1
                 variants={heroItemVariants}
                 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 mb-4 leading-[1.02]"
             >
-                BHARAT <span className="text-gradient">LEAD SUMMIT</span> 2027
+                BHARAT <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-blue-600 to-emerald-600">LEAD SUMMIT</span> 2027
             </motion.h1>
 
-            {/* 4. SUBTITLE (Max 20 words) */}
+            {/* 4. SUBTITLE */}
             <motion.p
                 variants={heroItemVariants}
                 className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 font-normal leading-relaxed max-w-xl mx-auto"
             >
-                Empowering the next generation of visionary leaders for sustainable growth and <span className="text-slate-900 font-semibold">Viksit Bharat 2047</span>.
+                Empowering visionary leaders for sustainable growth towards <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-emerald-600">Viksit Bharat 2047</span>.
             </motion.p>
 
             {/* 5. DATE STATUS */}

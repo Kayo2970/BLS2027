@@ -62,17 +62,22 @@ const Navbar: React.FC = () => {
             <div className="flex items-center gap-6">
                 {/* Logo */}
                 <div className="flex-shrink-0">
-                    <Link to="/" className="flex items-center gap-3 group">
-                      <div className="relative w-9 h-9 bg-white rounded-xl shadow-md shadow-blue-600/10 group-hover:scale-105 transition-transform overflow-hidden border border-slate-200 flex items-center justify-center p-1">
+                    <Link to="/" className="flex items-center gap-2.5 group">
+                      <div className="relative w-10 h-10 bg-white rounded-xl shadow-md shadow-orange-500/10 group-hover:scale-105 transition-transform overflow-hidden border border-slate-200/90 flex items-center justify-center p-1.5">
                          <img 
                             src={LOGO_URL}
-                            alt="Bharat Lead Summit" 
+                            alt="Bharat Lead Summit Logo" 
                             className="w-full h-full object-contain"
                         />
                       </div>
-                      <span className="font-extrabold text-sm tracking-tight text-slate-900 hidden sm:inline-block">
-                        BLS <span className="text-blue-600">2027</span>
-                      </span>
+                      <div className="flex flex-col text-left hidden sm:flex">
+                        <span className="font-black text-sm tracking-tight text-slate-900 leading-none">
+                          BHARAT LEAD
+                        </span>
+                        <span className="font-extrabold text-[10px] tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-blue-600 to-emerald-600">
+                          SUMMIT 2027
+                        </span>
+                      </div>
                     </Link>
                 </div>
                 
